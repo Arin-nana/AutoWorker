@@ -1,0 +1,32 @@
+[
+    {
+        "prompt": "Write a unit test using pytest framework for this code",
+        "framework": "pytest",
+        "code": "C:\\Users\\Egor\\Desktop\\work\\python\\pytest\\entities",
+        "result": "C:\\Users\\Egor\\Desktop\\work\\python\\pytest\\input.txt"
+    },
+    {
+        "prompt": "Write a unit test using pytest framework for this code",
+        "framework": "pytest",
+        "code": "C:\\Users\\Egor\\Desktop\\work\\python\\pytest\\entities",
+        "result": "C:\\Users\\Egor\\Desktop\\work\\python\\pytest\\input.txt"
+    },
+    {
+        "prompt": "Write a unit test using pytest framework for this code",
+        "framework": "pytest",
+        "code": "C:\\Users\\Egor\\Desktop\\work\\python\\pytest\\entities",
+        "result": "C:\\Users\\Egor\\Desktop\\work\\python\\pytest\\input.txt"
+    },
+    {
+        "prompt": "Write a unit test using pytest framework for this code",
+        "framework": "pytest",
+        "code": "C:\\Users\\Egor\\Desktop\\work\\python\\pytest\\entities",
+        "result": "C:\\Users\\Egor\\Desktop\\work\\python\\pytest\\input.txt"
+    },
+    {
+        "prompt": "Write a unit test using pytest framework for this code",
+        "framework": "pytest",
+        "code": "C:\\Users\\Egor\\Desktop\\work\\python\\pytest\\pytest_jsons.txt",
+        "result": "C:\\Users\\Egor\\Desktop\\work\\python\\pytest\\input.txt"
+    }
+]
