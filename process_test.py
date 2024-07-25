@@ -20,23 +20,30 @@ def search_keywords(test_code: str, keywords: List[str]) -> List[str]:
             found_keywords.append(keyword)
     return found_keywords
 
-def extract_entities(content: str) -> Set[str]:
+def extract_entities(content: str, language: str) -> Set[str]:
     """Извлекает названия методов и классов из текста, исключая метод __init__."""
     entities = set()
-    pattern = re.compile(r'^\s*(def|class)\s+(\w+)', re.MULTILINE)
+    if language == 'python':
+        pattern = re.compile(r'^\s*(def|class)\s+(\w+)', re.MULTILINE)
+    elif language == 'javascript':
+        pattern = re.compile(r'^\s*(function|class|const|let)\s+(\w+)', re.MULTILINE)
+
     for match in pattern.finditer(content):
         entity_name = match.group(2)
         if entity_name != '__init__':
             entities.add(entity_name)
     return entities
 
-def remove_duplicate_entities(content: str) -> str:
+def remove_duplicate_entities(content: str, language: str) -> str:
     """Удаляет дублирующиеся реализации методов и классов из строки."""
     lines = content.split('\n')
-    entity_pattern = re.compile(r'^\s*(def|class)\s+(\w+)')
+    if language == 'python':
+        entity_pattern = re.compile(r'^\s*(def|class)\s+(\w+)')
+    elif language == 'javascript':
+        entity_pattern = re.compile(r'^\s*(function|class|const|let)\s+(\w+)')
     import_pattern = re.compile(r'^\s*from\s+\w+|\s*import\s+|\s*@\w+')
 
-    entities = extract_entities(content)
+    entities = extract_entities(content, language)
     seen_entities = set()
     new_lines = []
     skip = False
@@ -58,7 +65,7 @@ def remove_duplicate_entities(content: str) -> str:
 
     return '\n'.join(new_lines)
 
-def process_test_file(test_file_path: str, keywords: List[str], code_directory: str, framework: str) -> None:
+def process_test_file(test_file_path: str, keywords: List[str], code_directory: str, framework: str, language: str) -> None:
     """Парсит файл теста, ищет ключевые слова и добавляет соответствующий код в выходной файл, избегая дублирования."""
     # Чтение кода теста
     test_code = read_file(test_file_path)
@@ -82,7 +89,7 @@ def process_test_file(test_file_path: str, keywords: List[str], code_directory: 
                 print(f"Файл для ключевого слова '{keyword}' не найден по пути: {keyword_file_path}")
 
     # Удаление дублирующихся реализаций методов и классов
-    entity_code = remove_duplicate_entities(entity_code.strip())
+    entity_code = remove_duplicate_entities(entity_code.strip(), language)
 
     # Формирование нового содержимого файла
     new_content = f"{test_code.strip()}\n/////\n{entity_code}\n/////\n{framework}"
@@ -104,5 +111,8 @@ if __name__ == "__main__":
     # Фреймворк
     framework: str = 'pytest'
 
+    # Язык программирования
+    language: str = 'python'  # или 'javascript'
+
     # Запуск обработки файла теста
-    process_test_file(test_file_path, keywords, code_directory, framework)
+    process_test_file(test_file_path, keywords, code_directory, framework, language)
