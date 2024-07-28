@@ -52,9 +52,9 @@ if __name__ == "__main__":
     # Путь к входному файлу, содержащему исходный код тестов
     input_file_path = r'C:\Users\Egor\Desktop\work\python\pytest\temp_test_file.txt'
     # Путь к временному выходному файлу, где будут сохраняться тесты для обработки
-    output_file_path = r'C:\Users\Egor\Desktop\work\python\pytest\input.txt'
+    output_file_path = r'C:\Users\1\OneDrive\Рабочий стол\python\pytest\input.txt'
     # Путь к скрипту, который будет выполняться после каждого теста
-    pipeline_script_path = r'C:\Users\Egor\PycharmProjects\AutoWorker\pipeline.py'
+    pipeline_script_path = r'C:\Users\1\OneDrive\Документы\GitHub\AutoWorker\pipeline.py'
     # Язык программирования
     language = 'python'  # или 'javascript'
 

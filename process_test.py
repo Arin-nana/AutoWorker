@@ -100,13 +100,13 @@ def process_test_file(test_file_path: str, keywords: List[str], code_directory: 
 # Пример использования
 if __name__ == "__main__":
     # Путь к файлу теста
-    test_file_path: str = r'C:\Users\Egor\Desktop\work\python\pytest\input.txt'
+    test_file_path: str = r'C:\Users\1\OneDrive\Рабочий стол\python\pytest\input.txt'
 
     # Ключевые слова для поиска
-    keywords: List[str] = ['crud', 'settings', 'verify_password','User', 'UserCreate','random_email', 'random_lower_string'  , 'superuser_token_headers', 'normal_user_token_headers']
+    keywords: List[str] = ["app"]
 
     # Директория, где находятся файлы с кодом для ключевых слов
-    code_directory: str = r'C:\Users\Egor\Desktop\work\python\pytest\entities'
+    code_directory: str = r'C:\Users\1\OneDrive\Рабочий стол\python\pytest\entities'
 
     # Фреймворк
     framework: str = 'pytest'

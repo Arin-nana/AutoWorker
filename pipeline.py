@@ -28,11 +28,10 @@ def main(test_file_path, keywords, code_directory, framework, output_file_path, 
     import_and_run(script2_path, 'main', test_file_path, output_file_path)
 
 if __name__ == "__main__":
-    test_file_path = r'C:\Users\Egor\Desktop\work\python\pytest\input.txt'
-    keywords = ['crud', 'settings', 'verify_password', 'User', 'UserCreate', 'random_email', 'random_lower_string',
-                'superuser_token_headers', 'normal_user_token_headers']
-    code_directory = r'C:\Users\Egor\Desktop\work\python\pytest\entities'
-    output_file_path = r'C:\Users\Egor\Desktop\work\python\pytest\pytest_jsons.txt'
+    test_file_path = r'C:\Users\1\OneDrive\Рабочий стол\python\pytest\input.txt'
+    keywords = []
+    code_directory = r'C:\Users\1\OneDrive\Рабочий стол\python\pytest\entities'
+    output_file_path = r'C:\Users\1\OneDrive\Рабочий стол\python\pytest\pytest_jsons.txt'
     framework = 'pytest'
     language = 'python'  # или 'javascript'
 
