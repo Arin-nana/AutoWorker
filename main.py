@@ -60,4 +60,5 @@ def main(test_file_path, output_file_path):
 if __name__ == "__main__":
     test_file_path = "C:\\Users\\1\\OneDrive\\Рабочий стол\\python\\pytest\\input.txt"
     output_file_path = "C:\\Users\\1\\OneDrive\\Рабочий стол\\python\\pytest\\pytest_jsons.txt"
+
     main(test_file_path, output_file_path)

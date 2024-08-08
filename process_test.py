@@ -102,11 +102,9 @@ if __name__ == "__main__":
     # Путь к файлу теста
     test_file_path: str = r'C:\Users\1\OneDrive\Рабочий стол\python\pytest\input.txt'
 
-    # Ключевые слова для поиска
-    keywords: List[str] = ["app"]
-
     # Директория, где находятся файлы с кодом для ключевых слов
     code_directory: str = r'C:\Users\1\OneDrive\Рабочий стол\python\pytest\entities'
+    keywords = [os.path.splitext(f)[0] for f in os.listdir(code_directory) if f.endswith('.txt')]
 
     # Фреймворк
     framework: str = 'pytest'

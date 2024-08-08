@@ -126,10 +126,21 @@ def remove_duplicate_entities(file_path: str) -> None:
     with open(file_path, 'w', encoding='utf-8') as file:
         file.writelines(new_lines)
 
-def process_test_file(test_file_path: str, keywords: List[str], code_directory: str, output_file_path: str) -> None:
+def get_keywords_from_directory(code_directory: str) -> List[str]:
+    """Получает список ключевых слов из имен файлов в указанной директории, удаляя расширение .txt"""
+    keywords = []
+    for filename in os.listdir(code_directory):
+        if filename.endswith('.txt'):
+            keywords.append(filename[:-4])  # удаляем расширение .txt
+    return keywords
+
+def process_test_file(test_file_path: str, code_directory: str, output_file_path: str) -> None:
     """Парсит файл теста, ищет ключевые слова и добавляет соответствующий код в выходной файл, избегая дублирования."""
     # Чтение кода теста
     test_code = read_file(test_file_path)
+
+    # Получение ключевых слов из директории
+    keywords = get_keywords_from_directory(code_directory)
 
     # Поиск ключевых слов в коде теста
     found_keywords = search_keywords(test_code, keywords)
@@ -154,9 +165,6 @@ def process_test_file(test_file_path: str, keywords: List[str], code_directory: 
 # Путь к файлу теста
 test_file_path: str = 'path/to/test_file.py'
 
-# Ключевые слова для поиска
-keywords: List[str] = ['MyClass', 'my_function', 'my_variable']
-
 # Директория, где находятся файлы с кодом для ключевых слов
 code_directory: str = 'path/to/code_directory'
 
@@ -164,7 +172,7 @@ code_directory: str = 'path/to/code_directory'
 output_file_path: str = 'path/to/output_file.txt'
 
 # Запуск обработки файла теста
-process_test_file(test_file_path, keywords, code_directory, output_file_path)
+process_test_file(test_file_path, code_directory, output_file_path)
 ```
 
 ### Подробные комментарии к функции `remove_duplicate_entities`
@@ -215,16 +223,16 @@ process_test_file(test_file_path, keywords, code_directory, output_file_path)
    ```
    - Итерируется по строкам файла.
    - Если строка соответствует шаблону `entity_pattern`, проверяет, была ли эта сущность уже добавлена.
-     - Если да, устанавливает флаг `skip` в `True`.
+     - Если да, устанавливает
+
+ флаг `skip` в `True`.
      - Если нет, добавляет сущность в `seen_entities` и устанавливает `skip` в `False`.
    - Если `skip` равно `False`, добавляет строку в `new_lines`.
-   - Если `skip` равно `True` и строка соответствует
-
-шаблону `import_pattern` или является пустой, удаляет последнюю добавленную строку из `new_lines`.
+   - Если `skip` равно `True` и строка соответствует шаблону `import_pattern` или является пустой, удаляет последнюю добавленную строку из `new_lines`.
 
 5. **Запись обновленного содержимого в файл**:
    ```python
    with open(file_path, 'w', encoding='utf-8') as file:
        file.writelines(new_lines)
    ```
-   - Записывает обновленное содержимое в файл, удаляя дублирующиеся реализации методов и классов.
+   - Записывает обновленное содержимое в файл, предварительно удалив дублирующиеся реализации методов и классов.

@@ -17,9 +17,16 @@ def import_and_run(module_path, function_name, *args):
     logging.debug(f'Результат выполнения функции {function_name}: {result}')
     return result
 
-def main(test_file_path, keywords, code_directory, framework, output_file_path, language):
+def get_keywords_from_directory(directory):
+    """Получает список ключевых слов из имен файлов в указанной директории."""
+    return [os.path.splitext(f)[0] for f in os.listdir(directory) if f.endswith('.txt')]
+
+def main(test_file_path, code_directory, framework, output_file_path, language):
     script1_path = r'C:\Users\Egor\PycharmProjects\AutoWorker\process_test.py'
     script2_path = r'C:\Users\Egor\PycharmProjects\AutoWorker\main.py'
+
+    # Получение ключевых слов из директории
+    keywords = get_keywords_from_directory(code_directory)
 
     logging.info('Запуск первого скрипта: process_test.py')
     import_and_run(script1_path, 'process_test_file', test_file_path, keywords, code_directory, framework, language)
@@ -35,4 +42,4 @@ if __name__ == "__main__":
     framework = 'pytest'
     language = 'python'  # или 'javascript'
 
-    main(test_file_path, keywords, code_directory, framework, output_file_path, language)
+    main(test_file_path, code_directory, framework, output_file_path, language)
